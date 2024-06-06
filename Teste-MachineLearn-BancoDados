@@ -1,0 +1,48 @@
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
+import mysql.connector
+
+#Conecção banco de dados MySQL
+conexao = mysql.connector.connect(
+    host='localhost',
+    user='root',
+    password='',
+    database='mediconecta'
+)
+
+#Dados de exemplo: doenças e seus sintomas
+cursor = conexao.cursor()
+comando_SQL = "SELECT * FROM doenca"
+cursor.execute(comando_SQL)
+data = cursor.fetchall()
+conexao.commit()
+
+#Extrair os sintomas da lista de tuplas e dividir os sintomas separados por vírgulas
+doencas_sintomas = [(row[0], row[1], row[2].split(', ')) for row in data]
+
+#Extrair as doenças correspondentes aos sintomas
+doencas_correspondentes = [row[1] for row in doencas_sintomas]
+
+#Transformando os dados em vetores TF-IDF
+tfidf_vectorizer = TfidfVectorizer()
+tfidf_matrix = tfidf_vectorizer.fit_transform(doencas_correspondentes)
+
+#Extrair os sintomas da lista de tuplas e dividir os sintomas separados por vírgulas
+doencas_sintomas = [(row[0], row[1], row[2].split(', ')) for row in data]
+
+#Pedir entrada do usuário
+sintomas_usuario = input("Por favor, insira os sintomas que você está sentindo: ")
+
+#Verificar se os sintomas fornecidos estão na lista de sintomas
+doencas_identificadas = []
+for doenca_id, doenca, sintomas in doencas_sintomas:
+    for sintoma in sintomas:
+        if sintoma in sintomas_usuario:
+            doencas_identificadas.append(doenca)
+            break
+
+if doencas_identificadas:
+    print("Com base nos sintomas fornecidos, as possíveis doenças podem ser:", doencas_identificadas, ". Informe mais sintomas para uma maior precisão na identificação da doença.")
+else:
+    print("Desculpe, os sintomas fornecidos não correspondem a nenhum registro em nossa base de dados.")
