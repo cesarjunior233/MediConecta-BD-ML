@@ -1,0 +1,12 @@
+create table doenca(
+id int(4) AUTO_INCREMENT,
+doenca varchar(20) NOT NULL,
+sintomas varchar(50)NOT NULL,
+PRIMARY KEY (id)
+);
+
+insert into doenca(id, doenca, sintomas) values (null, “resfriado”, “nariz escorrendo, espirros, dor de garganta”);
+insert into doenca(id, doenca, sintomas) values (null, “gripe”, “febre, dor no corpo, tosse”);
+insert into doenca(id, doenca, sintomas) values (null, “alergia”, “coceira nos olhos, espirros, erupções cutâneas”);
+
+https://sourceforge.net/projects/wampserver/ #Site banco de dados download
