@@ -1,3 +1,5 @@
+create database mediconecta;
+
 create table doenca(
 id int(4) AUTO_INCREMENT,
 doenca varchar(20) NOT NULL,
