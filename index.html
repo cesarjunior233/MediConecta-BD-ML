@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediConecta</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <h1>Bem-Vindo ao MediConecta o seu site para descobrir com qual doença você está e se tem tratamento!</h1>
+    <h1>Responda as perguntas do Diagnóstico para saber a doença com a qual o seu corpo está lutando contra!</h1>
+    <div class="container">
+        <h1>Diagnóstico de Doenças</h1>
+        <div id="question-container" class="hidden">
+            <p id="question"></p>
+            <button onclick="handleResponse('S')">Sim</button>
+            <button onclick="handleResponse('N')">Não</button>
+            <button onclick="handleResponse('NS')">Não Sei</button>
+        </div>
+        <div id="result-container" class="hidden">
+            <p id="result"></p>
+        </div>
+    </div>
+</body>
+</html>
